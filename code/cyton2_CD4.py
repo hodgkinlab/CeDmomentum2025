@@ -546,12 +546,9 @@ if __name__ == "__main__":
 
 	########### DATA ###########
 	DATA_FILES = [
-		# '2023_06_28-Continuous stimulation CD4+.xlsx',
-		# '2023_06_28-Stimulus removed CD4+.xlsx'
-		
-		# '2023_07_03-CD4 TCM (rev).xlsx',
+		'2023_07_03-CD4 TCM (rev).xlsx',
 		'2023_07_03-CD4 Block (rev).xlsx',
-		# '2023_07_03-CD4 Block+IL-2 (rev).xlsx'
+		'2023_07_03-CD4 Block+IL-2 (rev).xlsx'
 	]
 	KEYS = [os.path.splitext(os.path.basename(data_key))[0] for data_key in DATA_FILES]
 	df = parse_data('./data', DATA_FILES)

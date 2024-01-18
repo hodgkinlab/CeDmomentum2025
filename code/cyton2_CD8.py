@@ -546,9 +546,6 @@ if __name__ == "__main__":
 
 	########### DATA ###########
 	DATA_FILES = [
-		# '2023_06_28-Continuous stimulation CD8+.xlsx',
-		# '2023_06_28-Stimulus removed CD8+.xlsx'
-		
 		'2023_07_03-CD8 TCM (rev).xlsx',
 		'2023_07_03-CD8 Block (rev).xlsx',
 		'2023_07_03-CD8 Block+IL-2 (rev).xlsx'
