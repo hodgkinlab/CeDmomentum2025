@@ -4,5 +4,5 @@ This repository contains the datasets from human T-cell momentum assay and analy
 
 All figures are located in $\verb+out+$ folder and organised by the cell type.
 
-- $\verb+analysis+$ folder contains figures generated from the Jupyter notebook.
-- $\verb+*-TCM+$, $\verb+*-Block+$ and $\verb_*-Block + IL-2_$ folders contain Cyton2 model fit results for each CD4+ and CD8+ samples.
+- $\verb_analysis_$ folder contains figures generated from the Jupyter notebook.
+- $\verb_*-TCM_$, $\verb_*-Block_$ and $\verb_*-Block + IL-2_$ folders contain Cyton2 model fit results for each CD4+ and CD8+ samples.
