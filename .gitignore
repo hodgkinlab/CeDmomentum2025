@@ -134,6 +134,12 @@ cython_debug/
 doc/
 code/archive
 code/data/archive
+code/data/2023_06_28-Continuous stimulation CD4+.xlsx
+code/data/2023_06_28-Continuous stimulation CD8+.xlsx
+code/data/2023_06_28-Stimulus removed CD4+.xlsx
+code/data/2023_06_28-Stimulus removed CD8+.xlsx
+code/out/CD4/Cont vs Rmv
+code/out/CD8/Cont vs Rmv
 code/out/CD4/extra(dt=0.5, B=1000)
 code/out/CD8/extra(dt=0.5, B=1000)
 code/out/Continuous vs Removed stimuli TTFD.xlsx
