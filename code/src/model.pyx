@@ -128,7 +128,7 @@ class Cyton2Model:
 				for igen in range(self.exp_max_div+1):
 					cell = <DTYPE_t>cells_gen[igen, t_idx]
 					model.append(cell)
-		return np.asfarray(model)
+		return np.asarray(model)
 
 	def extrapolate(self, model_times, params):
 		# Unstimulated death parameters
