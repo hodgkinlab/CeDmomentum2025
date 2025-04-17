@@ -1,7 +1,7 @@
 """
 Cyton2 fit for AF's CD4 or CD8 T cells (HD, CVID and COE)
 Modify the Cyton2 model to estimate the initial cell numbers, rather than fixed as a constant
-Last edit: 8-August-2023
+Last edit: 17-April-2023
 """
 import os, sys, time, datetime, copy, tqdm
 import numpy as np
@@ -318,15 +318,6 @@ def fit(inputs):
 		"vary": np.append([params[p].vary for p in params], ["False"])}, 
 	index=["mUns", "sUns", "mDiv0", "sDiv0", "mDD", "sDD", "mDie", "sDie", "m", "p", "N0"])
 
-	# excel_path = f"./out/CD8/{key}_result.xlsx"
-	# if os.path.isfile(excel_path):
-	# 	with pd.ExcelWriter(excel_path, engine='openpyxl', mode='a') as writer:
-	# 		save_best_fit.to_excel(writer, sheet_name=f"pars_{condition}")
-	# 		boots.to_excel(writer, sheet_name=f"boot_{condition}")
-	# else:
-	# 	with pd.ExcelWriter(excel_path, engine='openpyxl', mode='w') as writer:
-	# 		save_best_fit.to_excel(writer, sheet_name=f"pars_{condition}")
-	# 		boots.to_excel(writer, sheet_name=f"boot_{condition}")
 	excel_path = f"./out/CD8/{key}_{condition}_result.xlsx"
 	with pd.ExcelWriter(excel_path, engine='openpyxl') as writer:
 		save_best_fit.to_excel(writer, sheet_name="pars")
@@ -414,17 +405,6 @@ def fit(inputs):
 	ax1[1,0].fill_between(times, -conf['tdie_pdf'][0], -conf['tdie_pdf'][1], fc='red', ec=None, alpha=0.5)
 	ax1[1,0].set_yticklabels(np.round(np.abs(ax1[0,0].get_yticks()), 5))  # remove negative y-tick labels
 	ax1[1,0].legend(fontsize=9, frameon=True)
-
-	## CUMULATIVE DISTRIBUTION FUNCTION
-	# ax1[1,0].set_ylabel("CDF")
-	# ax1[1,0].set_xlabel("Time (hour)")
-	# ax1[1,0].plot(times, tdiv0_cdf, color='blue', ls='-')
-	# ax1[1,0].fill_between(times, conf['tdiv0_cdf'][0], conf['tdiv0_cdf'][1], fc='blue', ec=None, alpha=0.5)
-	# ax1[1,0].plot(times, tdd_cdf, color='green', ls='-')
-	# ax1[1,0].fill_between(times, conf['tdd_cdf'][0], conf['tdd_cdf'][1], fc='green', ec=None, alpha=0.5)
-	# ax1[1,0].plot(times, tdie_cdf, color='red', ls='-')
-	# ax1[1,0].fill_between(times, conf['tdie_cdf'][0], conf['tdie_cdf'][1], fc='red', ec=None, alpha=0.5)
-	# ax1[1,0].set_ylim(bottom=0, top=1)
 
 	## TOTAL CELL NUMBERS 
 	ax1[1,1].set_title(f"$N_0 = {N0:.1f}\pm_{{{N0-err_N0[0]:.1f}}}^{{{err_N0[1]-N0:.1f}}}$")
@@ -557,9 +537,7 @@ if __name__ == "__main__":
 	for key in KEYS:
 		reader = df[key]['reader']
 		for icnd, cond in enumerate(reader.condition_names):
-			if cond == 'naive unstim' or cond == 'memory unstim': pass
-			else:
-				inputs.append((key, df[key], reader, icnd))
+			inputs.append((key, df[key], reader, icnd))
 
 	tqdm.tqdm.set_lock(mp.RLock())  # for managing output contention
 	p = mp.Pool(initializer=tqdm.tqdm.set_lock, initargs=(tqdm.tqdm.get_lock(),))
